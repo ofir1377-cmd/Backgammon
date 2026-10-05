@@ -1,0 +1,19 @@
+{
+  "name": "backgammon-online",
+  "version": "1.0.0",
+  "description": "Mobile-friendly online backgammon for two friends, joined by a game code",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1",
+    "socket.io": "^4.8.4"
+  }
+}

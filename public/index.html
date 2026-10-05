@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#3b2414">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>שש-בש עם חברים</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Lobby -->
+  <section id="lobby" class="screen">
+    <div class="card">
+      <h1>🎲 שש-בש</h1>
+      <p class="sub">משחקים עם חבר – כל אחד מהטלפון שלו</p>
+
+      <label class="field">
+        <span>השם שלך</span>
+        <input id="name" maxlength="16" autocomplete="nickname" placeholder="למשל: דני">
+      </label>
+
+      <button id="createBtn" class="btn primary">משחק חדש</button>
+
+      <div class="divider"><span>או הצטרפו עם קוד</span></div>
+
+      <div class="join-row">
+        <input id="codeInput" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="קוד משחק" autocomplete="off">
+        <button id="joinBtn" class="btn">הצטרף</button>
+      </div>
+      <p id="lobbyError" class="error" hidden></p>
+    </div>
+  </section>
+
+  <!-- Waiting for opponent -->
+  <section id="waiting" class="screen" hidden>
+    <div class="card">
+      <h2>ממתינים לחבר…</h2>
+      <p class="sub">שלחו לחבר את הקוד הזה:</p>
+      <div id="bigCode" class="big-code"></div>
+      <button id="shareBtn" class="btn primary">שיתוף קישור</button>
+      <button id="copyBtn" class="btn">העתקת קוד</button>
+      <button class="btn ghost leaveBtn">יציאה</button>
+    </div>
+  </section>
+
+  <!-- Game -->
+  <section id="game" class="screen" hidden>
+    <header class="players">
+      <div id="oppBox" class="player"></div>
+      <div class="code-tag">קוד <b id="codeTag"></b></div>
+      <div id="meBox" class="player"></div>
+    </header>
+
+    <div class="board-wrap">
+      <svg id="board" viewBox="0 0 380 440" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+
+    <p id="status" class="status"></p>
+
+    <div class="controls">
+      <button id="undoBtn" class="btn">↩ ביטול</button>
+      <button id="mainBtn" class="btn primary">הטל קוביות</button>
+    </div>
+
+    <div id="gameOver" class="overlay" hidden>
+      <div class="card">
+        <h2 id="gameOverTitle"></h2>
+        <p id="gameOverScore" class="sub"></p>
+        <button id="rematchBtn" class="btn primary">משחק נוסף</button>
+        <button class="btn ghost leaveBtn">יציאה ללובי</button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" hidden></div>
+  </section>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
